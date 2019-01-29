@@ -15,6 +15,11 @@ const DynamoDB = new AWS.DynamoDB({
   region: "ap-northeast-1"
 })
 
+
+router.get('/', async function(req, res) {
+  return res.send({ message: "apiは動いています！" });
+});
+
 router.post('/post_piece_image', async function(req, res) {
   const { url, id } = req.body
   const params = {

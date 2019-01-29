@@ -11,6 +11,14 @@ var cors = require('cors')
 var app = express();
 app.use(cors())
 
+app.use (function (req, res, next) {
+  if (req.secure) {
+    next();
+  } else {
+    res.redirect('https://' + req.headers.host + req.url);
+  }
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
